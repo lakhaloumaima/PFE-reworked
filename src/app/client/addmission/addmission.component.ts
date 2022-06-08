@@ -83,8 +83,11 @@ export class AddmissionComponent implements OnInit {
     let data = f.value
     console.log(data)
     this.usersService.addMission(formData).subscribe(() => {
+
       this.date = moment(Date.now()).format("YYYY-MM-DD");
+
       if (data.beginingDate > this.date) {
+
         console.log(this.date)
         console.log(data.beginingDate)
         this.submitted = true;
@@ -99,6 +102,7 @@ export class AddmissionComponent implements OnInit {
         // window.location.reload();
         this.route.navigate(['/missions-client'])
       }
+      
       else {
 
         Swal.fire({

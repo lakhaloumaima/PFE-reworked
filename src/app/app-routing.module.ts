@@ -41,6 +41,7 @@ import { LoginComponent } from './user/login/login.component';
 import { MissionComponent } from './user/mission/mission.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ResetPasswordComponent } from './user/reset-password/reset-password.component';
+import { StatisticComponent } from './user/statistic/statistic.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'freelancer', component: FreelancerComponent },
   { path: 'contact', component: ContactComponent },
+  {path:'statistic',component: StatisticComponent },
 
   /*********************************** admin *************************************/
   { path: 'dashboard-admin', canActivate: [AuthGuard], component: DashboardAdminComponent },

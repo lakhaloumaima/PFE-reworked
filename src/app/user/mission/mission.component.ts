@@ -109,9 +109,7 @@ export class MissionComponent implements OnInit {
       this.dataArray = response;
     })
   }
-  addreview() {
 
-  }
   ///****************************************************  addrequest  ************************************///
   addrequest(id: any) {
 
@@ -145,17 +143,18 @@ export class MissionComponent implements OnInit {
   }
 
 
-  addfavoris(id: any ) {
+  addfavoris(id: any) {
 
     if (this.freelancerdata) {
+      
       const formData = new FormData();
       formData.append('mission_id', id);
       formData.append('user_id', this.freelancerdata.id);
       // let data=f.value   
-     // console.log(formData)
+      // console.log(formData)
       this.usersService.addFavoris(formData).subscribe(() => {
-        this.route.navigate(['/postulated-missions-freelancer'])
- 
+        this.route.navigate(['/favoris'])
+
         Swal.fire({
           position: 'top-end',
           icon: 'success',

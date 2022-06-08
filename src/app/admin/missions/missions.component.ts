@@ -38,22 +38,14 @@ export class MissionsComponent implements OnInit {
   ngOnInit(): void {
     this.usersService.getAllMissions().subscribe(data => {
 
-      this.dataArray = data, (err: HttpErrorResponse) => {
-
+      this.dataArray = data 
+      console.log(this.dataArray)   , (err: HttpErrorResponse) => {
+       
         this.messageErr = "We dont't found this student in our database"
       }
 
     })
 
-    /*
-    this.produitServiceService.getAllusers().subscribe(data=>{
-
-      this.dataArrays=data , (err:HttpErrorResponse)=>{
- 
-      this.messageErrr="We dont't found this user in our database"} 
-    
-    }) 
-    */
   }
   /*
   search() {
@@ -74,9 +66,7 @@ export class MissionsComponent implements OnInit {
     this.key = key;
     this.reverse = !this.reverse;
   }
-  details(id: any) {
-    this.route.navigate(['/posts/' + id])
-  }
+
 
 
 
@@ -102,29 +92,8 @@ export class MissionsComponent implements OnInit {
       }
     })
 
-
   }
-  getdata(title: string, description: string, id: any) {
-    this.messageSuccess = ''
-    this.dataStudent.title = title
-    this.dataStudent.description = description
-    this.dataStudent.id = id
 
-  }
-  updatenewstudent(f: any) {
-    let data = f.value
-    this.usersService.updateMission(this.dataStudent.id, data).subscribe(response => {
-      let indexId = this.dataArray.findIndex((obj: any) => obj.id == this.dataStudent.id)
-
-      this.dataArray[indexId].title = data.title
-      this.dataArray[indexId].description = data.description
-
-      this.messageSuccess = `this title : ${this.dataArray[indexId].title} is updated`
-
-    }, (err: HttpErrorResponse) => {
-
-    })
-  }
 
 
 

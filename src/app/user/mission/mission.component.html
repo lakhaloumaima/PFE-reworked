@@ -60,7 +60,7 @@
             <div id="orange"><span class="fa fa-minus"></span></div>
             <form [formGroup]="languagefiltre">
               <div class="form-group">
-              
+
                 <ng-select class="form-control" appendTo="body" [multiple]="true" appendTo="body"
                   id="exampleFormControlSelect2" formControlName="language_id" [(ngModel)]="selectedDefaultLanguage"
                   (change)="missionbylanguages()">
@@ -100,6 +100,12 @@
                   <a style="text-decoration: none;" [routerLink]="['/detail-mission',produit.id]">
                     <h6 class="card-title">{{produit.title}}</h6>
                   </a>
+
+                  <div style="text-align: right;">
+                    <a class="btn btn-danger" *ngIf="produit.freelancer_id"> Offre expired
+                    </a>
+                  </div>
+
                   <i class="fas fa-clock">&nbsp; {{produit.beginingDate}}</i>
                   &nbsp;&nbsp; <i class="fas fa-money"></i>{{produit.budget}} DT
 
@@ -113,9 +119,8 @@
                     &nbsp;</a>
 
                   <br><br>
-                </div> 
-                <button  class="btn btn-danger" *ngIf="produit.completed"> Offre expired
-                </button> <br> <br>
+                </div>
+
 
                 <div class="form-group">
                   <button *ngIf="role!=='client' && role!=='admin' " class="btn btn-danger" type="submit"

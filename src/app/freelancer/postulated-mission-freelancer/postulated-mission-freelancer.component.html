@@ -60,7 +60,7 @@
                                         class="btn btn-success">{{item.status}}</button>
                                 </td>
 
-                                <td> {{item.mission.title}} </td>
+                                <td   [routerLink]="['/detail-mission',item.mission_id]"  > {{item.mission.title}} </td>
                                 <!--   <td>{{item.languages.name}}</td> -->
                                 <td>{{item.mission.description}}</td>
                                 <td> {{item.mission.duration}} months</td>

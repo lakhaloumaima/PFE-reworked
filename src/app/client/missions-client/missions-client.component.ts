@@ -59,7 +59,7 @@ export class MissionsClientComponent implements OnInit {
       beginingDate: new FormControl('', [Validators.required]),
       budget: new FormControl('', [Validators.required]),
       category_id: new FormControl('', [Validators.required]),
-      language_id: new FormControl(this.selectedItems , [Validators.required]),
+      language_id: new FormControl(this.selectedItems, [Validators.required]),
     });
 
 
@@ -68,9 +68,9 @@ export class MissionsClientComponent implements OnInit {
 
   onItemSelect(item: any) {
     this.selectedItems.push(item)
-    console.log(item.id )
+    console.log(item.id)
     this.test1.concat(item.id)
-    debugger
+
   }
 
   onItemDeSelect(item: any) {
@@ -92,7 +92,7 @@ export class MissionsClientComponent implements OnInit {
 
     /*-----Load Langugage---*/
     this.usersService.getAllLanguages().subscribe(language => {
-      //debugger
+      //
       language.forEach((l: { [x: string]: any; }) => this.languages.push({ "id": l["id"], "name": l["name"] }));
       this.languagedata = language
 
@@ -197,7 +197,7 @@ export class MissionsClientComponent implements OnInit {
     this.dataMission.budget = budget
     this.dataMission.category_id = category_id
     this.dataMission.language_id = 4
-    debugger
+
     this.dataMission.description = description
     this.dataMission.id = id
     console.log(this.dataMission)
@@ -213,12 +213,13 @@ export class MissionsClientComponent implements OnInit {
     formData.append('budget', this.addmissionn.value.budget);
     formData.append('category_id', this.addmissionn.value.category_id);
     formData.append('client_id', this.clientdata.id);
-    formData.append('language_id', this.selectedItems );
+    formData.append('language_id', JSON.stringify(this.selectedItems));
 
-    debugger
+
     this.usersService.updateMission(this.dataMission.id, formData).subscribe((response) => {
+
       this.date = moment(Date.now()).format("YYYY-MM-DD");
-      debugger
+
       if (data.beginingDate > this.date) {
         console.log(response)
         this.submitted = true;
@@ -232,9 +233,9 @@ export class MissionsClientComponent implements OnInit {
         this.dataArray[indexId].budget = data.budget
         this.dataArray[indexId].category_id = data.category_id
         //this.dataArray[indexId].language_id = 4
-        this.dataArray[indexId].language_id =  this.selectedItems
-       // debugger
-      //  this.selectedItems = data.language_id
+        this.dataArray[indexId].language_id = this.selectedItems
+        // 
+        //  this.selectedItems = data.language_id
         this.messageSuccess = `this title : ${this.dataArray[indexId].title} is updated`
         Swal.fire('Whooa!', 'Mission Succeffulfy updated !', 'success')
         //window.location.reload();

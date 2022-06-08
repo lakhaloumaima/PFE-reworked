@@ -106,17 +106,33 @@ export class ExperienceComponent implements OnInit {
 
     console.log(data)
 
-    this.usersService.addexperiance(formData).subscribe(() => {
-      console.log(data)
-      Swal.fire('Saved!', 'Experience added succefully', 'success')
-      window.location.reload();
+    if (data.dateDebut < data.dateFin) {
 
-    }, (err: HttpErrorResponse) => {
-      this.messageErr = err.error
-      console.log(err.error)
-      console.log(err.status)
+      this.usersService.addexperiance(formData).subscribe(() => {
 
-    });
+
+        console.log(data)
+        Swal.fire('Saved!', 'Experience added succefully', 'success')
+        window.location.reload();
+
+      }, (err: HttpErrorResponse) => {
+        this.messageErr = err.error
+        console.log(err.error)
+        console.log(err.status)
+
+      });
+    }
+    else {
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Start Date must be before End date !',
+
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
 
   dataexperiance = {
@@ -158,46 +174,58 @@ export class ExperienceComponent implements OnInit {
     formData.append('freelancer_id', this.freelancerdata.id);
 
     let data = f.value
+    if (data.dateDebut < data.dateFin) {
 
-    Swal.fire({
-      title: 'Do you want to save the changes?',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Save',
-      denyButtonText: `Don't save`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        debugger
-        this.usersService.updateexperiance(this.dataexperiance.id, formData).subscribe(response => {
+      Swal.fire({
+        title: 'Do you want to save the changes?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Save',
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          debugger
+          this.usersService.updateexperiance(this.dataexperiance.id, formData).subscribe(response => {
 
-          console.log(response)
+            console.log(response)
 
-          let indexId = this.dataArray.findIndex((obj: any) => obj.id == this.dataArray.id)
+            let indexId = this.dataArray.findIndex((obj: any) => obj.id == this.dataArray.id)
 
-          //this.dataArray[indexId].id=data.id
-          this.dataArray[indexId].jobType = data.jobType
-          this.dataArray[indexId].entreprise = data.entreprise
-          this.dataArray[indexId].description = data.description
-          this.dataArray[indexId].dateDebut = data.dateDebut
-          this.dataArray[indexId].langugage = data.langugage
-          this.dataArray[indexId].languagerating = data.languagerating
-          this.dataArray[indexId].dateFin = data.dateFin
+            //this.dataArray[indexId].id=data.id
+            this.dataArray[indexId].jobType = data.jobType
+            this.dataArray[indexId].entreprise = data.entreprise
+            this.dataArray[indexId].description = data.description
+            this.dataArray[indexId].dateDebut = data.dateDebut
+            this.dataArray[indexId].langugage = data.langugage
+            this.dataArray[indexId].languagerating = data.languagerating
+            this.dataArray[indexId].dateFin = data.dateFin
 
 
 
-        }, (err: HttpErrorResponse) => {
-          console.log(err.message)
+          }, (err: HttpErrorResponse) => {
+            console.log(err.message)
 
-        })
+          })
 
-        Swal.fire('Saved!', '', 'success')
-        window.location.reload();
-      } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
-      }
-    })
+          Swal.fire('Saved!', '', 'success')
+          window.location.reload();
+        } else if (result.isDenied) {
+          Swal.fire('Changes are not saved', '', 'info')
+        }
+      })
+    }
+    else {
 
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Start Date must be before End date !',
+
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
 
   }
 }

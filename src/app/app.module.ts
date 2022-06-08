@@ -59,6 +59,7 @@ import { OrderByPipe } from './order-by.pipe';
 import { DiscuterClientComponent } from './freelancer/discuter-client/discuter-client.component';
 import { GeneratecontratfreelancerComponent } from './freelancer/generatecontratfreelancer/generatecontratfreelancer.component';
 import { GeneratecontratclientComponent } from './client/generatecontratclient/generatecontratclient.component';
+import { StatisticComponent } from './user/statistic/statistic.component';
 
 
 @NgModule({
@@ -113,6 +114,7 @@ import { GeneratecontratclientComponent } from './client/generatecontratclient/g
     DiscuterClientComponent,
     GeneratecontratfreelancerComponent,
     GeneratecontratclientComponent,
+    StatisticComponent,
   ],
   imports: [
     BrowserModule,

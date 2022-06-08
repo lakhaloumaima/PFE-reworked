@@ -142,6 +142,8 @@
 										[settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
 										(onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)"
 										(onSelectAll)="onSelectAll($event)" formControlName="language_id">
+										<!--<ng-option *ngFor="let l of selectedItems" [value]="l.id">{{l.name}}</ng-option>
+									-->
 									</ng-multiselect-dropdown>
 
 								</div>
